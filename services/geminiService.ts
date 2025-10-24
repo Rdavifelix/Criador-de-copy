@@ -1,39 +1,38 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { AdCreative, AdGenerationParams } from '../types';
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
 
-const adGenerationSchema = {
-  type: Type.OBJECT,
-  properties: {
-    ads: {
-      type: Type.ARRAY,
-      description: "Uma lista de 3 criativos de anúncio gerados.",
-      items: {
-        type: Type.OBJECT,
-        properties: {
-          headline: {
-            type: Type.STRING,
-            description: "O título (headline) do anúncio. Curto, chamativo e impactante."
-          },
-          body: {
-            type: Type.STRING,
-            description: "O corpo de texto do anúncio. Persuasivo, detalhando a oferta e os benefícios."
-          },
-          ctaText: {
-            type: Type.STRING,
-            description: "O texto para o botão de call-to-action, alinhado com o CTA final desejado."
-          }
-        },
-        required: ["headline", "body", "ctaText"]
-      }
-    }
-  },
-  required: ["ads"]
-};
-
 export const generateAds = async (params: AdGenerationParams): Promise<AdCreative[]> => {
+  const adGenerationSchema = {
+    type: Type.OBJECT,
+    properties: {
+      ads: {
+        type: Type.ARRAY,
+        description: "Uma lista de 3 criativos de anúncio gerados.",
+        items: {
+          type: Type.OBJECT,
+          properties: {
+            headline: {
+              type: Type.STRING,
+              description: "O título (headline) do anúncio. Curto, chamativo e impactante."
+            },
+            body: {
+              type: Type.STRING,
+              description: "O corpo de texto do anúncio. Persuasivo, detalhando a oferta e os benefícios."
+            },
+            ctaText: {
+              type: Type.STRING,
+              description: "O texto para o botão de call-to-action, alinhado com o CTA final desejado."
+            }
+          },
+          required: ["headline", "body", "ctaText"]
+        }
+      }
+    },
+    required: ["ads"]
+  };
+  
   const { product, offer, goal, cta } = params;
 
   const prompt = `
