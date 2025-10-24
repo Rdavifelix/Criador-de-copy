@@ -1,0 +1,5 @@
+{
+  "name": "Gerador de Anúncios IA",
+  "description": "Uma aplicação para gerar criativos de anúncios de alta conversão usando IA. Os usuários fornecem o contexto do produto, oferta, objetivo e CTA para receber múltiplas variações de texto de anúncio.",
+  "requestFramePermissions": []
+}
